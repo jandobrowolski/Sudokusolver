@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Test sudoku</title>
+<style>
+	body {
+		position: relative;
+	}
+	table {
+		width: 400px;
+		height: 200px;
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		margin: -100px 0 0 -200px;
+	}
+	button {
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		margin: 250px 0 0 -70px;
+	}
+	input {
+		width: 35px;
+		height: 35px;
+		font-size: 25px;
+		text-align: center;
+		box-shadow: inset;
+	}
+	#test {
+		font-size: 35px;
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		margin: 280px 0 0 -150px;
+	}
+</style>
+</head>
+<body onload="inicjacja_tabeli()">
+<table id="sudoku" maxlength='1'></table>
+<button onclick = "main()" >rozwiaz</button>
+<p id="test"> </p>
+</body>
+
+<script language="JavaScript" src="script.js"> </script>
+</html>

@@ -1,0 +1,69 @@
+function sprawdzWszystko()	//funkcja sprawdzaj¹ca poprawnoœæ ca³ego sudoku
+{
+	for(var wie=0; wie<9; wie++)
+	{
+		for(var kol=0; kol<9; kol++)
+		{
+			console.log(document.getElementById('x'+(kol+1)+'y'+(wie+1)).value);
+			if(document.getElementById('x'+(kol+1)+'y'+(wie+1)).value!='')
+				grid[wie][kol]=parseInt(document.getElementById('x'+(kol+1)+'y'+(wie+1)).value);
+		}
+	}
+	
+	for(var wie=0; wie<9; wie++)
+	{
+		for(var kol=1; kol<9; kol++)
+		{
+			for(var i=kol-1; i>-1; i--)
+			{
+				if((grid[wie][kol]==grid[wie][i])&&(grid[wie][kol])!=0)		//sprawdzenie wierszy
+				{
+					console.log("wie"+wie+"kol"+kol+"i"+i+"grid[wie][kol]"+grid[wie][kol]+"grid[wie][i]"+grid[wie][i]);
+					document.getElementById("test").innerHTML = "Blad! Liczby sie powtarzaja!(wiersze)";
+					return;
+				}
+				if((grid[kol][wie]==grid[i][wie])&&(grid[kol][wie])!=0)		//sprawdzenie kolumn
+				{
+					console.log("wie"+wie+"kol"+kol+"i"+i+"grid[wie][kol]"+grid[wie][kol]+"grid[wie][i]"+grid[wie][i]);
+					document.getElementById("test").innerHTML = "Blad! Liczby sie powtarzaja!(kolumny)";
+					return;
+				}
+			}
+		}
+	}
+	var ki;
+	for(var wie=0; wie<3; wie++)		//sprawdzenie kwadratu... niezbyt wydajne, niezbyt ladne
+	{
+		for(var kol=0; kol<3; kol++)
+		{
+			for(var w=0; w<3; w++)
+			{
+				for(var k=0; k<3; k++)
+				{
+					if(grid[w+3*wie][k+3*kol]!=0)
+					{
+						ki=k-1;
+						for(var wi=w; wi>-1&&ki>-1; wi--)
+						{
+							console.log("w "+w+" wie "+wie+" k "+k+" kol "+kol+" "+" wi "+wi+" wie "+wie+" ki "+ki+" kol "+kol);
+							if(grid[w+3*wie][k+3*kol]==grid[wi+3*wie][ki+3*kol])
+							{
+								console.log(grid[w+3*wie][k+3*kol]+" "+grid[wi+3*wie][ki+3*kol]);
+								console.log("w "+w+" wie "+wie+" k "+k+" kol "+kol+" "+" wi "+wi+" wie "+wie+" ki "+ki+" kol "+kol);
+								
+								document.getElementById("test").innerHTML = "Blad! Liczby sie powtarzaja!(kwadraty)";
+								return;
+							}
+							
+							if(wi==0)
+							{
+								wi=2;
+								ki--;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
